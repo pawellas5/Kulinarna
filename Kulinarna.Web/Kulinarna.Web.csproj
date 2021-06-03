@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-Kulinarna.Web-F11C001D-A221-49B1-BBC8-02B9C6EE3591</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kulinarna.BusinessLogic\Kulinarna.BusinessLogic.csproj" />
+    <ProjectReference Include="..\Kulinarna.Data\Kulinarna.Data.csproj" />
+  </ItemGroup>
+
+</Project>

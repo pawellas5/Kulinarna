@@ -1,0 +1,21 @@
+﻿@page
+@model RecipesModel
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>No nie ma przepisów.</p>
+</div>
+
+
+<div>
+    <ul>
+        @foreach (var recipe in Model.Recipes)
+        {
+            <li><div>@recipe.Name</div> <div>@recipe.Content</div></li>
+        }
+    </ul>
+
+</div>
