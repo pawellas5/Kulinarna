@@ -14,7 +14,11 @@ namespace Kulinarna.Web.Pages
     {
         private readonly ILogger<RecipesModel> _logger;
         private readonly RecipeService _recipeService;
-        public IEnumerable<RecipeDTO> Recipes  { get; set; }
+        public IEnumerable<RecipeListItemDTO> Recipes { get; set; }
+        public IEnumerable<RecipeListItemDTO> RecipesByName { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
         public RecipesModel(ILogger<RecipesModel> logger, RecipeService recipeService)
         {
@@ -24,8 +28,13 @@ namespace Kulinarna.Web.Pages
 
         public async Task OnGet()
         {
-            var recipes = await _recipeService.GetRecipes(1, 1000);
-            Recipes = recipes.Recipes;
+            //var recipes = await _recipeService.GetRecipes(1, 1000);
+
+            //Recipes = recipes.Recipes;
+            RecipesByName = await _recipeService.GetRecipesByName(SearchTerm);
+
+
+
         }
     }
 }

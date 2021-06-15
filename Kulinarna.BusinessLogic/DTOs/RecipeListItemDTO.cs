@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Kulinarna.BusinessLogic.DTOs
 {
-    public class RecipeDTO
+    public class RecipeListItemDTO
     {
         public int RecipeId { get; set; }
         public string Name { get; set; }
-        public string Content { get; set; }
-        public string Author { get; set; }
     }
 }
