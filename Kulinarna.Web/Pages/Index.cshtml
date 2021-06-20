@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>No nie ma przepisów.</p>
+    <p>Najlepsze przepisy w mieście.</p>
 </div>
 
 <!--searchbyname-->
@@ -15,7 +15,7 @@
     <div class="input-group">
         <input asp-for="SearchTerm" type="search" class="form-control" placeholder="Enter your favourite recipe">
         <div class="input-group-append">
-            <button class="btn btn-secondary" type="button">
+            <button class="btn btn-secondary" type="submit">
                 <i class="fa fa-search"></i>
             </button>
         </div>
@@ -29,7 +29,7 @@
     <ul>
         @foreach (var recipe in Model.RecipesByName)
         {
-            <li><div>@recipe.Name</div></li>
+            <li><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId"><div>@recipe.Name</div></a></li>
         }
     </ul>
 
