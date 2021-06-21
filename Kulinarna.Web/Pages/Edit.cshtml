@@ -1,0 +1,24 @@
+﻿@page "{recipeId:int}"
+@model Kulinarna.Web.Pages.EditModel
+@{
+}
+
+<h2>Editing @Model.RecipeDTO.Name</h2>
+
+<form method="post">
+
+    <input type="hidden" asp-for="RecipeDTO.RecipeId" />
+    <div class="form-group">
+        <label asp-for="RecipeDTO.Name"></label>
+        <input asp-for="RecipeDTO.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="RecipeDTO.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RecipeDTO.Content"></label>
+        <input asp-for="RecipeDTO.Content" class="form-control" />
+        <span class="text-danger" asp-validation-for="RecipeDTO.Content"></span>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

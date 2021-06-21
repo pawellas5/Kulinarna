@@ -46,6 +46,25 @@ namespace Kulinarna.BusinessLogic.Services
         }
         //????????????????????????????
 
+        public RecipeDTO Update(RecipeDTO updatedRecipe)
+        {
+            var recipe = _dbContext.Recipes.Where(r => r.Id == updatedRecipe.RecipeId)
+                                           .Select(r => new RecipeDTO()).FirstOrDefault();//because when using only FirstOrDefault there is a problem with types
+            if (recipe != null)
+            {
+                recipe.Name = updatedRecipe.Name;
+                recipe.Content = updatedRecipe.Content;
+
+            }
+            return recipe;
+        }
+
+
+        public int Commit()
+        {
+            return 0;
+        }
+
     }
 
 }

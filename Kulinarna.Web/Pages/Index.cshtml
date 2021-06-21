@@ -26,12 +26,17 @@
 <br />
 
 <div>
-    <ul>
+    <table class="table table-striped">
         @foreach (var recipe in Model.RecipesByName)
         {
-            <li><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId"><div>@recipe.Name</div></a></li>
+            <tr>
+                <td><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a></td>
+                <td><a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a></td>
+            </tr>
+
         }
-    </ul>
+    </table>
+
 
 </div>
 
