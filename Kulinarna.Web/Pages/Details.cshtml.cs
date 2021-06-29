@@ -13,6 +13,9 @@ namespace Kulinarna.Web
     {
         private readonly RecipeService recipeService;
 
+        [TempData]
+        public string Message { get; set; }
+
         public RecipeDTO RecipeDTO { get; set; }
 
         public DetailsModel(RecipeService recipeService)

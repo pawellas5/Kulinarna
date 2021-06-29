@@ -3,6 +3,12 @@
 @{
 }
 
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+
 
 <h2>@Model.RecipeDTO.Name</h2>
 
@@ -11,6 +17,9 @@
 <div>@Model.RecipeDTO.Content</div>
 
 <div>@Model.RecipeDTO.Author</div>
+
+
+
 
 <a asp-page="./Index" class="btn btn-link">Home <i class="fa fa-home"></i></a>
 

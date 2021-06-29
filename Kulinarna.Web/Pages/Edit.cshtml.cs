@@ -21,26 +21,43 @@ namespace Kulinarna.Web.Pages
         {
             this.recipeService = recipeService;
         }
-        public IActionResult OnGet(int recipeId)
+        public IActionResult OnGet(int? recipeId)
         {
-            RecipeDTO = recipeService.GetRecipeById(recipeId);
+            if (recipeId.HasValue)
+            {
+                RecipeDTO = recipeService.GetRecipeById(recipeId.Value);
+
+            }
+            else //create
+            {
+                RecipeDTO = new RecipeDTO();
+
+            }
             if (RecipeDTO == null)
             {
                 return RedirectToPage("./404");
             }
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                recipeService.Update(RecipeDTO);
-                recipeService.Commit();
-                return RedirectToPage("./Details", new { recipeID = RecipeDTO.RecipeId });
+                return Page();
+            }
+            if (RecipeDTO.RecipeId > 0)
+            {
+                await recipeService.Update(RecipeDTO);
+            }
+            else
+            {
+                RecipeDTO.RecipeId = await recipeService.Create(RecipeDTO);
             }
 
+            TempData["Message"] = "Recipe saved!";
+            return RedirectToPage("./Details", new { recipeID = RecipeDTO.RecipeId });
 
-            return Page();
+
 
         }
     }

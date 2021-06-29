@@ -35,7 +35,8 @@ namespace Kulinarna.BusinessLogic.Services
                 .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name }).ToListAsync();
             return recipes;
         }
-        //???????????????????????
+
+
         public RecipeDTO GetRecipeById(int id)
         {
             var recipes = _dbContext.Recipes
@@ -44,19 +45,27 @@ namespace Kulinarna.BusinessLogic.Services
 
             return recipes;
         }
-        //????????????????????????????
 
-        public RecipeDTO Update(RecipeDTO updatedRecipe)
+        public async Task Update(RecipeDTO updatedRecipe)
         {
-            var recipe = _dbContext.Recipes.Where(r => r.Id == updatedRecipe.RecipeId)
-                                           .Select(r => new RecipeDTO()).FirstOrDefault();//because when using only FirstOrDefault there is a problem with types
+            var recipe = _dbContext.Recipes.FirstOrDefault(r => r.Id == updatedRecipe.RecipeId); 
+            //because when using only FirstOrDefault there is a problem with types ??
             if (recipe != null)
             {
                 recipe.Name = updatedRecipe.Name;
                 recipe.Content = updatedRecipe.Content;
-
+                await _dbContext.SaveChangesAsync();
+                return;
             }
-            return recipe;
+
+            throw new ArgumentException("Recipe doesn't exist");
+        }
+        public async Task<int> Create(RecipeDTO newRecipeDto)
+        {
+            var newRecipe = new Recipe() { Name = newRecipeDto.Name, Content = newRecipeDto.Content };
+            _dbContext.Recipes.Add(newRecipe);
+            await _dbContext.SaveChangesAsync();
+            return newRecipe.Id;
         }
 
 
