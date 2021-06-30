@@ -1,0 +1,15 @@
+﻿@page "{recipeId:int}"
+@model Kulinarna.Web.Pages.DeleteModel
+@{
+
+}
+
+
+<h2>Delete</h2>
+<div class="alert alert-danger">
+    Do you really want to delete?
+</div>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes</button>
+    <a asp-page="Index" class="btn btn-primary">No</a>
+</form>

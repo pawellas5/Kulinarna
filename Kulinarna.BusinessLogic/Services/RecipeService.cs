@@ -48,7 +48,7 @@ namespace Kulinarna.BusinessLogic.Services
 
         public async Task Update(RecipeDTO updatedRecipe)
         {
-            var recipe = _dbContext.Recipes.FirstOrDefault(r => r.Id == updatedRecipe.RecipeId); 
+            var recipe = _dbContext.Recipes.FirstOrDefault(r => r.Id == updatedRecipe.RecipeId);
             //because when using only FirstOrDefault there is a problem with types ??
             if (recipe != null)
             {
@@ -68,8 +68,22 @@ namespace Kulinarna.BusinessLogic.Services
             return newRecipe.Id;
         }
 
+        public async Task Delete(int id)
+        {
+            var recipe = _dbContext.Recipes.FirstOrDefault(r => r.Id == id);
+            if (recipe != null)
+            {
+                _dbContext.Recipes.Remove(recipe);
+                await _dbContext.SaveChangesAsync();
 
-        
+            }
+            return;
+
+
+        }
+
+
+
 
     }
 

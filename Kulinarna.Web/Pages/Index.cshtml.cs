@@ -12,6 +12,9 @@ namespace Kulinarna.Web.Pages
 {
     public class RecipesModel : PageModel
     {
+        [TempData]
+        public string Message { get; set; }
+
         private readonly ILogger<RecipesModel> _logger;
         private readonly RecipeService _recipeService;
         public IEnumerable<RecipeListItemDTO> Recipes { get; set; }

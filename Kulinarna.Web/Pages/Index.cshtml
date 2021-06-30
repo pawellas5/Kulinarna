@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Przepisownia</h1>
     <p>Najlepsze przepisy w mieście.</p>
 </div>
 
@@ -25,6 +25,11 @@
 <br />
 <br />
 
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
 <div>
     <table class="table table-striped">
         @foreach (var recipe in Model.RecipesByName)
@@ -32,6 +37,8 @@
             <tr>
                 <td><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a></td>
                 <td><a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a></td>
+                <td><a asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a></td>
+
             </tr>
 
         }
