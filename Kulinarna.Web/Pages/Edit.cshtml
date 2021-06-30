@@ -17,13 +17,13 @@ else
 
     <input type="hidden" asp-for="RecipeDTO.RecipeId" />
     <div class="form-group">
-        <label asp-for="RecipeDTO.Name"></label>
+        <label asp-for="RecipeDTO.Name">Title</label>
         <input asp-for="RecipeDTO.Name" class="form-control" />
         <span class="text-danger" asp-validation-for="RecipeDTO.Name"></span>
     </div>
     <div class="form-group">
-        <label asp-for="RecipeDTO.Content"></label>
-        <input asp-for="RecipeDTO.Content" class="form-control" />
+        <label asp-for="RecipeDTO.Content">Description</label>
+        <textarea asp-for="RecipeDTO.Content" class="form-control"></textarea>
         <span class="text-danger" asp-validation-for="RecipeDTO.Content"></span>
 
     </div>

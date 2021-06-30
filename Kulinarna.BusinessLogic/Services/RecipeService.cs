@@ -69,10 +69,7 @@ namespace Kulinarna.BusinessLogic.Services
         }
 
 
-        public int Commit()
-        {
-            return 0;
-        }
+        
 
     }
 
