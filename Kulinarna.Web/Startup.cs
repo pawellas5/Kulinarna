@@ -1,5 +1,6 @@
 using Kulinarna.BusinessLogic.Services;
 using Kulinarna.Data;
+using Kulinarna.Web.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,8 +33,8 @@ namespace Kulinarna.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Kulinarna.Data")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<KulinarnaDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+             .AddEntityFrameworkStores<KulinarnaWebContext>();
             services.AddRazorPages();
             services.AddScoped<RecipeService>();
         }
