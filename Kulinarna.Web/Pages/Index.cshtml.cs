@@ -1,5 +1,6 @@
 ﻿using Kulinarna.BusinessLogic.DTOs;
 using Kulinarna.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace Kulinarna.Web.Pages
 {
+    [AllowAnonymous]
+    [Authorize(Policy =)]
     public class RecipesModel : PageModel
     {
         [TempData]
