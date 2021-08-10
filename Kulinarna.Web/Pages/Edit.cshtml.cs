@@ -13,9 +13,9 @@ namespace Kulinarna.Web.Pages
     public class EditModel : PageModel
     {
         private readonly RecipeService recipeService;
-      
+
         private readonly UserManager<ApplicationUser> userManager;
-        
+
         [BindProperty]
         public RecipeDTO RecipeDTO { get; set; }
 
@@ -26,7 +26,7 @@ namespace Kulinarna.Web.Pages
         }
         public IActionResult OnGet(int? recipeId)
         {
-           
+
             if (recipeId.HasValue)
             {
                 RecipeDTO = recipeService.GetRecipeById(recipeId.Value);
@@ -53,12 +53,12 @@ namespace Kulinarna.Web.Pages
                 return Page();
             }
             if (RecipeDTO.RecipeId > 0)
-            { 
-                if (RecipeDTO.AuthorId != userManager.GetUserId(HttpContext.User)) 
+            {
+                if (RecipeDTO.AuthorId != userManager.GetUserId(HttpContext.User))
                 {
-                    return RedirectToPage("./404");
+                    return RedirectToPage("./AccessDenied");
                 }
-                
+
                 else
                 {
                     await recipeService.Update(RecipeDTO);
@@ -70,7 +70,7 @@ namespace Kulinarna.Web.Pages
                 RecipeDTO.AuthorId = userManager.GetUserId(HttpContext.User);
                 RecipeDTO.RecipeId = await recipeService.Create(RecipeDTO);
 
-                
+
             }
 
             TempData["Message"] = "Recipe saved!";

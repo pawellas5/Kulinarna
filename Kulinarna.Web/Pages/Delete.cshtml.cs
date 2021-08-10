@@ -35,9 +35,9 @@ namespace Kulinarna.Web.Pages
         {
             var recipe = recipeService.GetRecipeById(recipeId);
 
-            if (recipe.AuthorId != userManager.GetUserId(HttpContext.User)) 
+            if (recipe.AuthorId != userManager.GetUserId(HttpContext.User))
             {
-                return RedirectToPage("./404");
+                return RedirectToPage("./AccessDenied");
             }
 
             else
