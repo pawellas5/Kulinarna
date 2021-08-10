@@ -16,7 +16,9 @@ namespace Kulinarna.BusinessLogic.DTOs
         [Required]
         public string Content { get; set; }
 
-        public string Author { get; set; }
+        
+        
+        public string AuthorId { get; set; }
 
 
     }

@@ -1,12 +1,14 @@
 ﻿using Kulinarna.BusinessLogic.DTOs;
 using Kulinarna.Data;
 using Kulinarna.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Kulinarna.BusinessLogic.Services
 {
@@ -32,7 +34,7 @@ namespace Kulinarna.BusinessLogic.Services
         {
             var recipes = await _dbContext.Recipes.Where(r => r.Name.Contains(name) || String.IsNullOrEmpty(name))
                 .OrderBy(r => r.Name)
-                .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name }).ToListAsync();
+                .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name, AuthorId = r.AuthorId }).ToListAsync();
             return recipes;
         }
 
@@ -41,7 +43,7 @@ namespace Kulinarna.BusinessLogic.Services
         {
             var recipes = _dbContext.Recipes
                 .Where(r => r.Id == id)
-                .Select(r => new RecipeDTO { RecipeId = r.Id, Name = r.Name, Content = r.Content }).SingleOrDefault();
+                .Select(r => new RecipeDTO { RecipeId = r.Id, Name = r.Name, Content = r.Content, AuthorId = r.AuthorId }).SingleOrDefault();
 
             return recipes;
         }
@@ -62,7 +64,7 @@ namespace Kulinarna.BusinessLogic.Services
         }
         public async Task<int> Create(RecipeDTO newRecipeDto)
         {
-            var newRecipe = new Recipe() { Name = newRecipeDto.Name, Content = newRecipeDto.Content };
+            var newRecipe = new Recipe() { Name = newRecipeDto.Name, Content = newRecipeDto.Content, AuthorId = newRecipeDto.AuthorId };
             _dbContext.Recipes.Add(newRecipe);
             await _dbContext.SaveChangesAsync();
             return newRecipe.Id;

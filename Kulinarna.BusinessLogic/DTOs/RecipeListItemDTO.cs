@@ -10,5 +10,9 @@ namespace Kulinarna.BusinessLogic.DTOs
     {
         public int RecipeId { get; set; }
         public string Name { get; set; }
+        public string AuthorId { get; set; }
+        public string Content { get; set; }
+
+
     }
 }

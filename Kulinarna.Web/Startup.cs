@@ -39,6 +39,7 @@ namespace Kulinarna.Web
             services.AddRazorPages().AddMvcOptions(o => o.Filters.Add(new AuthorizeFilter()));//default authorization
             services.AddScoped<RecipeService>();
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

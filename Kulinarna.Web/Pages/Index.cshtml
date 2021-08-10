@@ -32,12 +32,36 @@
 
 <div>
     <table class="table table-striped">
+     
+
+
+
         @foreach (var recipe in Model.RecipesByName)
         {
             <tr>
+                
                 <td><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a></td>
-                <td><a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a></td>
-                <td><a asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a></td>
+              
+
+
+                @if (Model.CurrentUserId != "")
+                {
+                    if (Model.CurrentUserId == recipe.AuthorId)
+
+                    {
+
+                        <td><a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a></td>
+                        <td><a asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a></td>
+
+
+                    }
+
+                }
+
+
+
+
+
 
             </tr>
 
