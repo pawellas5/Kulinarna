@@ -11,12 +11,13 @@ namespace Kulinarna.Data
 {
     public class KulinarnaDbContext : DbContext
     {
-        public KulinarnaDbContext(DbContextOptions<KulinarnaDbContext> options) 
+        public KulinarnaDbContext(DbContextOptions<KulinarnaDbContext> options)
             : base(options)
         {
 
         }
 
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
     }
 }

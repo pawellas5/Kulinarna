@@ -38,6 +38,8 @@ namespace Kulinarna.Web
              .AddEntityFrameworkStores<KulinarnaWebContext>();
             services.AddRazorPages().AddMvcOptions(o => o.Filters.Add(new AuthorizeFilter()));//default authorization
             services.AddScoped<RecipeService>();
+            //new service added
+            services.AddScoped<RatingService>();
 
 
         }

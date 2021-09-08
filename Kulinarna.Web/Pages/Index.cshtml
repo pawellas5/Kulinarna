@@ -32,21 +32,16 @@
 
 <div>
     <table class="table table-striped">
-     
-
-
 
         @foreach (var recipe in Model.RecipesByName)
         {
             <tr>
-                
                 <td><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a></td>
-              
 
-
-                @if (Model.CurrentUserId != "")
+                @if (Model.CurrentUserId != null)
                 {
-                    if (Model.CurrentUserId == recipe.AuthorId)
+
+                    @if (Model.CurrentUserId == recipe.AuthorId)
 
                     {
 
@@ -56,12 +51,9 @@
 
                     }
 
+                    <td><a asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId"><i class="fas fa-star"></i></a></td>
+
                 }
-
-
-
-
-
 
             </tr>
 

@@ -1,5 +1,6 @@
 ﻿using Kulinarna.BusinessLogic.DTOs;
 using Kulinarna.BusinessLogic.Services;
+using Kulinarna.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +23,18 @@ namespace Kulinarna.Web.Pages
         private readonly RecipeService _recipeService;
         private readonly UserManager<ApplicationUser> userManager;
         public string CurrentUserId { get; set; }
+        //***********************************************************************nowykod**
+        [BindProperty]
+        public string Value { get; set; }
+        [BindProperty]
+        public RatingDTO Rating { get; set; }
+        //***********************************************************************nowykod**
 
 
         public IEnumerable<RecipeListItemDTO> Recipes { get; set; }
         public IEnumerable<RecipeListItemDTO> RecipesByName { get; set; }
+
+
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
@@ -42,12 +51,7 @@ namespace Kulinarna.Web.Pages
         {
 
 
-            CurrentUserId = userManager.GetUserId(HttpContext.User);
-
-
-
-
-
+            CurrentUserId = userManager.GetUserId(HttpContext.User);//to remove i think
             //var recipes = await _recipeService.GetRecipes(1, 1000);
 
             //Recipes = recipes.Recipes;
@@ -56,5 +60,7 @@ namespace Kulinarna.Web.Pages
 
 
         }
+
+
     }
 }

@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Kulinarna.Data.Models
 {
-    public class Recipe
+    public class Rating
     {
         public int Id { get; set; }
-
-        public string Name { get; set; }
-        public string Content { get; set; }
-
         public string AuthorId { get; set; }
-        public double AvgRating { get; set; }
+        public int RecipeId { get; set; }
+        public int Value { get; set; }
 
     }
 }

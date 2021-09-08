@@ -3,14 +3,16 @@ using Kulinarna.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Kulinarna.Data.Migrations
 {
     [DbContext(typeof(KulinarnaDbContext))]
-    partial class KulinarnaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210904082111_RatingTableAdded")]
+    partial class RatingTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace Kulinarna.Data.Migrations
 
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("AvgRating")
-                        .HasColumnType("float");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
