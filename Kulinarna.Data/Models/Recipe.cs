@@ -16,6 +16,7 @@ namespace Kulinarna.Data.Models
 
         public string AuthorId { get; set; }
         public double AvgRating { get; set; }
+        public string AuthorName { get; set; }
 
     }
 }

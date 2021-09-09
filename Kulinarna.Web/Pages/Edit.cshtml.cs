@@ -68,6 +68,10 @@ namespace Kulinarna.Web.Pages
             else
             {
                 RecipeDTO.AuthorId = userManager.GetUserId(HttpContext.User);
+                RecipeDTO.AuthorName = userManager.Users.FirstOrDefault(r => r.Id == RecipeDTO.AuthorId).FullName;
+
+
+
                 RecipeDTO.RecipeId = await recipeService.Create(RecipeDTO);
 
 

@@ -45,11 +45,12 @@ namespace Kulinarna.BusinessLogic.Services
         {
             var result = _dbContext.Ratings.FirstOrDefault(r => r.RecipeId == recipeId && r.AuthorId == authorId);
 
-            if (result != null)
-            {
-                result.Value = value;
 
-            }
+
+            result.Value = value;
+            _dbContext.SaveChanges();
+
+
         }
 
 

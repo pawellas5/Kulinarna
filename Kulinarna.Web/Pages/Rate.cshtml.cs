@@ -47,7 +47,7 @@ namespace Kulinarna.Web.Pages
             if (ratingService.RatingExists(Rating.RecipeId, Rating.AuthorId))
             {
                 ratingService.UpdateRating(Rating.RecipeId, Rating.AuthorId, Rating.Value);
-                recipeService.UpdateAvgRating(recipeId, Rating.Value);
+                recipeService.UpdateAvgRating(recipeId, ratingService.AvgRatingForRecipe(Rating.RecipeId));
 
             }
 

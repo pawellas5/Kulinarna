@@ -12,6 +12,8 @@ namespace Kulinarna.BusinessLogic.DTOs
         public string Name { get; set; }
         public string AuthorId { get; set; }
         public string Content { get; set; }
+        public double AvgRating { get; set; }
+        public string AuthorName { get; set; }
 
 
     }

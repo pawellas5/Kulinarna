@@ -35,8 +35,39 @@
 
         @foreach (var recipe in Model.RecipesByName)
         {
+
+            var roundedrating = Convert.ToInt32(Math.Round(recipe.AvgRating, MidpointRounding.AwayFromZero));
+
+
             <tr>
-                <td><a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a></td>
+                <td>
+                    <a asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a><br />
+                    <span style="font-style: italic;float: left;color: #555;">by @recipe.AuthorName</span> <br />
+                    @if (Model.CurrentUserId != null)
+                    {
+                        <a style="text-decoration:none" asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
+                            @for (int i = 0; i < roundedrating; i++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                            @for (int i = roundedrating; i < 5; i++)
+                            {
+                                <i class="far fa-star"></i>
+                            }
+                        </a>
+                    }
+                    else
+                    {
+                        @for (int i = 0; i < roundedrating; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                        @for (int i = roundedrating; i < 5; i++)
+                        {
+                            <i class="far fa-star"></i>
+                        }
+                    }
+                </td>
 
                 @if (Model.CurrentUserId != null)
                 {
@@ -51,9 +82,40 @@
 
                     }
 
-                    <td><a asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId"><i class="fas fa-star"></i></a></td>
+                    @*<td>
+                                <a asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
+                                    @for (int i = 0; i < roundedrating; i++)
+                                    {
+                                        <i class="fas fa-star"></i>
+                                    }
+                                    @for (int i = roundedrating; i < 5; i++)
+                                    {
+                                        <i class="far fa-star"></i>
+                                    }
+                                </a>
+                            </td>
 
+                        }
+                        else
+                        {
+                            <td>
+                                @recipe.AvgRating <br />
+
+
+                                @for (int i = 0; i < roundedrating; i++)
+                                {
+                                    <i class="fas fa-star"></i>
+                                }
+                                @for (int i = roundedrating; i < 5; i++)
+                                {
+                                    <i class="far fa-star"></i>
+                                }
+
+
+                            </td>*@
                 }
+
+
 
             </tr>
 

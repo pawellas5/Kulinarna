@@ -22,14 +22,6 @@ namespace Kulinarna.Web.Pages
         private readonly ILogger<RecipesModel> _logger;
         private readonly RecipeService _recipeService;
         private readonly UserManager<ApplicationUser> userManager;
-        public string CurrentUserId { get; set; }
-        //***********************************************************************nowykod**
-        [BindProperty]
-        public string Value { get; set; }
-        [BindProperty]
-        public RatingDTO Rating { get; set; }
-        //***********************************************************************nowykod**
-
 
         public IEnumerable<RecipeListItemDTO> Recipes { get; set; }
         public IEnumerable<RecipeListItemDTO> RecipesByName { get; set; }
@@ -38,6 +30,7 @@ namespace Kulinarna.Web.Pages
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
+        public string CurrentUserId { get; set; }
 
         public RecipesModel(ILogger<RecipesModel> logger, RecipeService recipeService, UserManager<ApplicationUser> userManager)
         {
@@ -49,9 +42,10 @@ namespace Kulinarna.Web.Pages
 
         public async Task OnGet()
         {
+            CurrentUserId = userManager.GetUserId(HttpContext.User);
 
 
-            CurrentUserId = userManager.GetUserId(HttpContext.User);//to remove i think
+
             //var recipes = await _recipeService.GetRecipes(1, 1000);
 
             //Recipes = recipes.Recipes;
