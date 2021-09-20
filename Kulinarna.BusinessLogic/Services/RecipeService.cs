@@ -93,6 +93,22 @@ namespace Kulinarna.BusinessLogic.Services
             }
         }
 
+        //*********************Pagination************************
+
+        public async Task<List<RecipeListItemDTO>> GetPaginatedResult(int currentPage, int pageSize = 10, string name = null)
+        {
+            var data = await GetRecipesByName(name);
+            return data.OrderByDescending(r => r.AvgRating).ThenBy(r => r.Name).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+        }
+        public async Task<int> GetCount(string name = null)
+        {
+            var data = await GetRecipesByName(name);
+            return data.Count();
+        }
+
+
+        //***********************************************************
+
 
 
 

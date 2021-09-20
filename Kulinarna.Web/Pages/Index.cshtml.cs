@@ -16,8 +16,24 @@ namespace Kulinarna.Web.Pages
     [AllowAnonymous]
     public class RecipesModel : PageModel
     {
+
+        //********Pagination*****************************************
+
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        public int Count { get; set; }
+        public int PageSize { get; set; } = 10;
+        public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
+
+
+        //**************************************************8
+
+
+
         [TempData]
         public string Message { get; set; }
+
+
 
         private readonly ILogger<RecipesModel> _logger;
         private readonly RecipeService _recipeService;
@@ -42,14 +58,24 @@ namespace Kulinarna.Web.Pages
 
         public async Task OnGet()
         {
+            //old version
             CurrentUserId = userManager.GetUserId(HttpContext.User);
 
 
 
             //var recipes = await _recipeService.GetRecipes(1, 1000);
 
-            //Recipes = recipes.Recipes;
-            RecipesByName = await _recipeService.GetRecipesByName(SearchTerm);
+            //old version
+            //RecipesByName = await _recipeService.GetRecipesByName(SearchTerm); //old searching version
+
+
+            //**************************Pagination******************************************
+            RecipesByName = await _recipeService.GetPaginatedResult(CurrentPage, PageSize, SearchTerm);
+            Count = await _recipeService.GetCount(SearchTerm);
+
+
+
+            //*****************************************************************************8*
 
 
 
