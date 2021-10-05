@@ -3,16 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Kulinarna.Web</title>
+    @if ((string)ViewData["Title"] == "Recipes")
+    {
+        <title>@ViewData["Title"]</title>
+    }
+    else
+    {
+        <title>@ViewData["Title"] | Recipes</title>
+    }
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon_pepper.ico" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index"></a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/images/logo_pepper.png" alt="Logo" style="height:25px; width: 25px" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +47,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Kulinarna.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2021 - Recipes - PB
         </div>
     </footer>
 

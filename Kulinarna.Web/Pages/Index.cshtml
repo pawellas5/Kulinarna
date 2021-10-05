@@ -5,15 +5,15 @@
 }
 
 <div class="text-center">
-    <a asp-page="/Index" style="text-decoration: inherit; color: inherit;"><h1 class="display-4">Przepisownia</h1></a>
-    <p>Najlepsze przepisy w mieście.</p>
+    <a asp-page="/Index" style="text-decoration: inherit; color: inherit;"><h1 class="display-4">Recipes</h1></a>
+    <p>The best recipes in the world.</p>
 </div>
 
 <!--searchbyname-->
 
 <form method="get">
     <div class="input-group">
-        <input asp-for="SearchTerm" type="search" class="form-control" placeholder="Enter your favourite recipe">
+        <input asp-for="SearchTerm" type="search" class="form-control" placeholder="Search for recipes">
         <div class="input-group-append">
             <button class="btn btn-secondary" type="submit">
                 <i class="fa fa-search"></i>
@@ -112,16 +112,3 @@
 <a asp-page=".\Edit" class="btn btn-primary">Add new</a>
 
 
-<!--TO remove-->
-@*<table class="table table-sm">
-        @foreach (var claim in User.Claims)
-        {
-            <tr>
-                <td>@claim.Type</td>
-                <td>@claim.Value</td>
-            </tr>
-        }
-
-    </table>*@
-
-<!--*****************************************-->

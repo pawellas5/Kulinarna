@@ -1,6 +1,10 @@
 ﻿@page "{recipeId:int?}"
 @model Kulinarna.Web.Pages.EditModel
 @{
+    if (Model.RecipeDTO.RecipeId != 0)
+        ViewData["Title"] = "Edit " + Model.RecipeDTO.Name;
+    else
+        ViewData["Title"] = "Add recipe";
 }
 
 @if (Model.RecipeDTO.RecipeId == 0)
@@ -9,7 +13,7 @@
 }
 else
 {
-    <h2>Editing @Model.RecipeDTO.Name</h2>
+    <h2>Edit @Model.RecipeDTO.Name</h2>
 }
 
 
@@ -17,12 +21,12 @@ else
     <input type="hidden" asp-for="RecipeDTO.AuthorId">
     <input type="hidden" asp-for="RecipeDTO.RecipeId" />
     <div class="form-group">
-        <label asp-for="RecipeDTO.Name">Title</label>
+        <label asp-for="RecipeDTO.Name">Name</label>
         <input asp-for="RecipeDTO.Name" class="form-control" />
         <span class="text-danger" asp-validation-for="RecipeDTO.Name"></span>
     </div>
     <div class="form-group">
-        <label asp-for="RecipeDTO.Content">Description</label>
+        <label asp-for="RecipeDTO.Content">Method</label>
         <textarea asp-for="RecipeDTO.Content" class="form-control"></textarea>
         <span class="text-danger" asp-validation-for="RecipeDTO.Content"></span>
 
@@ -30,6 +34,11 @@ else
 
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
+<br>
+<a asp-page="./Index" class="btn btn-link">
+    <i class="fas fa-arrow-left"></i> Back
+
+</a>
 
 
 

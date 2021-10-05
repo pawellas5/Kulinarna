@@ -19,6 +19,7 @@ namespace Kulinarna.Web.Pages
 
         [BindProperty]
         public RatingDTO Rating { get; set; }
+        public RecipeDTO Recipe { get; set; }
         public int RecipeId { get; set; }
 
         private readonly RecipeService recipeService;
@@ -33,8 +34,9 @@ namespace Kulinarna.Web.Pages
         }
 
 
-        public void OnGet()
+        public async Task OnGet(int recipeId)
         {
+            Recipe = await recipeService.GetRecipeById(recipeId);
         }
         public IActionResult OnPost(int recipeId)
         {

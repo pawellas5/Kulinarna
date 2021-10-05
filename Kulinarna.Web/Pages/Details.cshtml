@@ -1,6 +1,7 @@
 ﻿@page "{recipeId:int}"
 @model Kulinarna.Web.DetailsModel
 @{
+    ViewData["Title"] = Model.RecipeDTO.Name;
 }
 
 @if (Model.Message != null)
@@ -16,6 +17,9 @@
 
 <div>@Model.RecipeDTO.Content</div>
 
-<a asp-page="./Index" class="btn btn-link">Home <i class="fa fa-home"></i></a>
+<a asp-page="./Index" class="btn btn-link">
+    <i class="fas fa-arrow-left"></i> Back
+
+</a>
 
 
