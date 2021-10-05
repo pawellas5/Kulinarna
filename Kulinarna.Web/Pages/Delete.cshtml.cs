@@ -22,9 +22,9 @@ namespace Kulinarna.Web.Pages
             this.recipeService = recipeService;
             this.userManager = userManager;
         }
-        public IActionResult OnGet(int recipeId)
+        public async Task<IActionResult> OnGet(int recipeId)
         {
-            RecipeDTO = recipeService.GetRecipeById(recipeId);
+            RecipeDTO = await recipeService.GetRecipeById(recipeId);
             if (RecipeDTO == null)
             {
                 return RedirectToPage("./404");
@@ -33,7 +33,7 @@ namespace Kulinarna.Web.Pages
         }
         public async Task<IActionResult> OnPostAsync(int recipeId)
         {
-            var recipe = recipeService.GetRecipeById(recipeId);
+            var recipe = await recipeService.GetRecipeById(recipeId);
 
             if (recipe.AuthorId != userManager.GetUserId(HttpContext.User))
             {

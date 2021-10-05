@@ -24,12 +24,12 @@ namespace Kulinarna.Web.Pages
             this.recipeService = recipeService;
             this.userManager = userManager;
         }
-        public IActionResult OnGet(int? recipeId)
+        public async Task<IActionResult> OnGet(int? recipeId)
         {
 
             if (recipeId.HasValue)
             {
-                RecipeDTO = recipeService.GetRecipeById(recipeId.Value);
+                RecipeDTO = await recipeService.GetRecipeById(recipeId.Value);
 
             }
             else //create
@@ -70,11 +70,7 @@ namespace Kulinarna.Web.Pages
                 RecipeDTO.AuthorId = userManager.GetUserId(HttpContext.User);
                 RecipeDTO.AuthorName = userManager.Users.FirstOrDefault(r => r.Id == RecipeDTO.AuthorId).FullName;
 
-
-
                 RecipeDTO.RecipeId = await recipeService.Create(RecipeDTO);
-
-
             }
 
             TempData["Message"] = "Recipe saved!";

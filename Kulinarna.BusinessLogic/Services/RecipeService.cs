@@ -30,22 +30,23 @@ namespace Kulinarna.BusinessLogic.Services
         }
 
 
-        public async Task<IEnumerable<RecipeListItemDTO>> GetRecipesByName(string name = null)
+        public IQueryable<RecipeListItemDTO> GetRecipesByName(string name = null)
         {
-            var recipes = await _dbContext.Recipes.Where(r => r.Name.Contains(name) || String.IsNullOrEmpty(name))
+            var recipes = _dbContext.Recipes.Where(r => r.Name.Contains(name) || String.IsNullOrEmpty(name))
                 .OrderBy(r => r.Name)
-                .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name, AuthorId = r.AuthorId, AvgRating = r.AvgRating, AuthorName = r.AuthorName }).ToListAsync();
+                .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name, AuthorId = r.AuthorId, AvgRating = r.AvgRating, AuthorName = r.AuthorName });
+
             return recipes;
         }
 
 
-        public RecipeDTO GetRecipeById(int id)
+        public async Task<RecipeDTO> GetRecipeById(int id)
         {
-            var recipes = _dbContext.Recipes
+            var recipe = await _dbContext.Recipes
                 .Where(r => r.Id == id)
-                .Select(r => new RecipeDTO { RecipeId = r.Id, Name = r.Name, Content = r.Content, AuthorId = r.AuthorId, AuthorName = r.AuthorName }).SingleOrDefault();
+                .Select(r => new RecipeDTO { RecipeId = r.Id, Name = r.Name, Content = r.Content, AuthorId = r.AuthorId, AuthorName = r.AuthorName }).SingleOrDefaultAsync();
 
-            return recipes;
+            return recipe;
         }
 
         public async Task Update(RecipeDTO updatedRecipe)
@@ -95,15 +96,14 @@ namespace Kulinarna.BusinessLogic.Services
 
         //*********************Pagination************************
 
-        public async Task<List<RecipeListItemDTO>> GetPaginatedResult(int currentPage, int pageSize = 10, string name = null)
+        public async Task<IEnumerable<RecipeListItemDTO>> GetPaginatedResult(int currentPage, int pageSize = 10, string name = null)
         {
-            var data = await GetRecipesByName(name);
-            return data.OrderByDescending(r => r.AvgRating).ThenBy(r => r.Name).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var data = GetRecipesByName(name);
+            return await data.OrderByDescending(r => r.AvgRating).ThenBy(r => r.Name).Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
         }
         public async Task<int> GetCount(string name = null)
         {
-            var data = await GetRecipesByName(name);
-            return data.Count();
+            return await GetRecipesByName(name).CountAsync();
         }
 
 

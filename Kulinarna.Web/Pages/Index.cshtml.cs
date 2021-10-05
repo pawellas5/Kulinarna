@@ -58,12 +58,8 @@ namespace Kulinarna.Web.Pages
 
         public async Task OnGet()
         {
-            //old version
+
             CurrentUserId = userManager.GetUserId(HttpContext.User);
-
-
-
-            //var recipes = await _recipeService.GetRecipes(1, 1000);
 
             //old version
             //RecipesByName = await _recipeService.GetRecipesByName(SearchTerm); //old searching version

@@ -13,8 +13,10 @@ namespace Kulinarna.Web.Pages
     public class RateModel : PageModel
     {
         public string CurrentUserId { get; set; }
+
         [BindProperty]
         public string Value { get; set; }
+
         [BindProperty]
         public RatingDTO Rating { get; set; }
         public int RecipeId { get; set; }
@@ -59,16 +61,10 @@ namespace Kulinarna.Web.Pages
 
             }
 
-
             //avg rating updates with every new rating
-
-
-
 
             TempData["Message"] = "Rating added";
             return RedirectToPage("./Details", new { recipeID = recipeId });
-
-
         }
     }
 }

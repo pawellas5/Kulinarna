@@ -24,7 +24,9 @@ namespace Kulinarna.BusinessLogic.Services
             var result = _dbContext.Ratings.Where(r => r.RecipeId == recipeId).Select(r => r.Value).Average();
             return result;
         }
-        //******************************************checks if proper rating exists
+        /// <summary>
+        /// Checks if given user rated given recipe
+        /// </summary>
         public bool RatingExists(int recipeId, string authorId)
         {
             var result = _dbContext.Ratings.FirstOrDefault(r => r.RecipeId == recipeId && r.AuthorId == authorId);

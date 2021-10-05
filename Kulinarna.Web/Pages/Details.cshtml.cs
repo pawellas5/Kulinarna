@@ -26,9 +26,9 @@ namespace Kulinarna.Web
             this.recipeService = recipeService;
         }
 
-        public IActionResult OnGet(int recipeID)
+        public async Task<IActionResult> OnGet(int recipeID)
         {
-            RecipeDTO = recipeService.GetRecipeById(recipeID);
+            RecipeDTO = await recipeService.GetRecipeById(recipeID);
             if (RecipeDTO == null)
             {
                 return RedirectToPage("./404");
