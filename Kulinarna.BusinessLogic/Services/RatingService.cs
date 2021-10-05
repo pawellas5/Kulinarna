@@ -1,6 +1,7 @@
 ﻿using Kulinarna.BusinessLogic.DTOs;
 using Kulinarna.Data;
 using Kulinarna.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,38 +20,38 @@ namespace Kulinarna.BusinessLogic.Services
             _dbContext = dbContext;
         }
 
-        public double AvgRatingForRecipe(int recipeId)
+        public async Task<double> AvgRatingForRecipe(int recipeId)
         {
-            var result = _dbContext.Ratings.Where(r => r.RecipeId == recipeId).Select(r => r.Value).Average();
+            var result = await _dbContext.Ratings.Where(r => r.RecipeId == recipeId).Select(r => r.Value).AverageAsync();
             return result;
         }
         /// <summary>
         /// Checks if given user rated given recipe
         /// </summary>
-        public bool RatingExists(int recipeId, string authorId)
+        public async Task<bool> RatingExists(int recipeId, string authorId)
         {
-            var result = _dbContext.Ratings.FirstOrDefault(r => r.RecipeId == recipeId && r.AuthorId == authorId);
+            var result = await _dbContext.Ratings.FirstOrDefaultAsync(r => r.RecipeId == recipeId && r.AuthorId == authorId);
             if (result == null) return false;
             return true;
         }
 
         //*************************newcode***************************
-        public void AddRating(RatingDTO newRatingDTO)
+        public async Task AddRating(RatingDTO newRatingDTO)
         {
             var newRate = new Rating() { AuthorId = newRatingDTO.AuthorId, RecipeId = newRatingDTO.RecipeId, Value = newRatingDTO.Value };
-            _dbContext.Ratings.Add(newRate);
-            _dbContext.SaveChanges();
+            await _dbContext.Ratings.AddAsync(newRate);
+            await _dbContext.SaveChangesAsync();
         }
         //***************************************************************newcode****************************
 
-        public void UpdateRating(int recipeId, string authorId, int value)
+        public async Task UpdateRating(int recipeId, string authorId, int value)
         {
             var result = _dbContext.Ratings.FirstOrDefault(r => r.RecipeId == recipeId && r.AuthorId == authorId);
 
 
 
             result.Value = value;
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
 
         }

@@ -83,14 +83,14 @@ namespace Kulinarna.BusinessLogic.Services
 
 
         }
-        public void UpdateAvgRating(int recipeId, double avg)
+        public async Task UpdateAvgRating(int recipeId, double avg)
         {
-            var recipe = _dbContext.Recipes.FirstOrDefault(r => r.Id == recipeId);
+            var recipe = await _dbContext.Recipes.FirstOrDefaultAsync(r => r.Id == recipeId);
 
             if (recipe != null)
             {
                 recipe.AvgRating = avg;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
         }
 

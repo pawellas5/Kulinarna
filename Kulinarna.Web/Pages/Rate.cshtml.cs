@@ -38,7 +38,7 @@ namespace Kulinarna.Web.Pages
         {
             Recipe = await recipeService.GetRecipeById(recipeId);
         }
-        public IActionResult OnPost(int recipeId)
+        public async Task<IActionResult> OnPost(int recipeId)
         {
 
 
@@ -48,18 +48,18 @@ namespace Kulinarna.Web.Pages
             Rating.AuthorId = CurrentUserId;
             Rating.RecipeId = recipeId;
 
-            if (ratingService.RatingExists(Rating.RecipeId, Rating.AuthorId))
+            if (await ratingService.RatingExists(Rating.RecipeId, Rating.AuthorId))
             {
-                ratingService.UpdateRating(Rating.RecipeId, Rating.AuthorId, Rating.Value);
-                recipeService.UpdateAvgRating(recipeId, ratingService.AvgRatingForRecipe(Rating.RecipeId));
+                await ratingService.UpdateRating(Rating.RecipeId, Rating.AuthorId, Rating.Value);
+                await recipeService.UpdateAvgRating(recipeId, await ratingService.AvgRatingForRecipe(Rating.RecipeId));
 
             }
 
             else
             {
-                ratingService.AddRating(Rating);
-                var avg = ratingService.AvgRatingForRecipe(recipeId);
-                recipeService.UpdateAvgRating(recipeId, avg);
+                await ratingService.AddRating(Rating);
+                var avg = await ratingService.AvgRatingForRecipe(recipeId);
+                await recipeService.UpdateAvgRating(recipeId, avg);
 
             }
 
