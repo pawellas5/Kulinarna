@@ -31,55 +31,74 @@
 }
 
 
-<div class="row offset-md-1">
+<div class="row">
     @foreach (var recipe in Model.RecipesByName)
     {
 
         var roundedrating = Convert.ToInt32(Math.Round(recipe.AvgRating, MidpointRounding.AwayFromZero));
 
 
-        <div class="pb-4 col-md-4 col-sm-6">
-            <a class="btn-link l" asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a><br />
-            <span style="font-style: italic;float: left;color: #555;">by @recipe.AuthorName</span> <br />
-            @if (Model.CurrentUserId != null)
-            {
-                <a style="text-decoration: inherit; color:inherit;" asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
-                    @for (int i = 0; i < roundedrating; i++)
+        <div class="pb-4 col-md-4 col-sm-6 pr-4 pl-4 col-md-auto mb-md-3">
+            @*col-md-auto and mb-md-3 make height of the cards the same*@
+
+            <div class="card">
+                <div class="card-header">
+                    @if (Model.CurrentUserId != null)
                     {
-                        <i style="color:rgba(255,215,0)" class="fas fa-star"></i>
+                        <a style="text-decoration: inherit; color:inherit;" asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
+                            @for (int i = 0; i < roundedrating; i++)
+                            {
+                                <i style="color:rgba(255,215,0)" class="fas fa-star"></i>
+                            }
+                            @for (int i = roundedrating; i < 5; i++)
+                            {
+                                <i style="color:rgba(255,215,0, 0.4);" class="fas fa-star"></i>
+                            }
+                        </a>
                     }
-                    @for (int i = roundedrating; i < 5; i++)
+                    else
                     {
-                        <i style="color:rgba(255,215,0, 0.4);" class="fas fa-star"></i>
+
+                        @for (int i = 0; i < roundedrating; i++)
+                        {
+                            <i style="color:rgba(255,215,0);" class="fas fa-star"></i>
+                        }
+                        @for (int i = roundedrating; i < 5; i++)
+                        {
+                            <i style="color:rgba(255,215,0, 0.4)" class="fas fa-star"></i>
+                        }
                     }
-                </a>
-            }
-            else
-            {
 
-                @for (int i = 0; i < roundedrating; i++)
-                {
-                    <i style="color:rgba(255,215,0);" class="fas fa-star"></i>
-                }
-                @for (int i = roundedrating; i < 5; i++)
-                {
-                    <i style="color:rgba(255,215,0, 0.4)" class="fas fa-star"></i>
-                }
-            }
 
-            @{ var ownRecipe = Model.CurrentUserId == recipe.AuthorId;
+                </div>
+                <div class="card-body">
+                    <a class="btn-link  text-truncate"><h5 class="card-title">@recipe.Name</h5></a>  @*text truncate makes the title fits in one line*@
 
-            }
+                    <h6 class="card-subtitle mb-2 text-muted font-italic">by @recipe.AuthorName</h6>
 
-            @if (!ownRecipe)
-            {
+                    <p class="card-text">
+                        @recipe.Content<span class="text-truncate"> ...</span>
 
-            }
-            else
-            {
-                <a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a>
-                <a asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a>
-            }
+                        <a class="btn-link " style="display:block;" asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">More</a>
+                    </p>
+
+                    @{ var ownRecipe = Model.CurrentUserId == recipe.AuthorId;
+
+                    }
+                    <br />
+                    @if (!ownRecipe)
+                    {
+                        <a class="card-link"></a> @*Empty markups fill in the emptiness in a card in which user don't have special rights'*@
+                        <a class="card-link"></a>
+                    }
+                    else
+                    {
+                        <a class="card-link" asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a>
+
+                        <a class="card-link" asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a>
+                    }
+                </div>
+            </div>
         </div>
 
 
@@ -92,7 +111,7 @@
 
 
 <div>
-    <ul class="pagination pt-4 pb-4">
+    <ul class="pagination pagination-sm pt-4 pb-4">
         @for (var i = 1; i <= Model.TotalPages; i++)
         {
             <li class="page-item @(i == Model.CurrentPage ? "active" : "")">

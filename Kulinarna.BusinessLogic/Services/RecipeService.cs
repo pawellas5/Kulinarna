@@ -34,7 +34,7 @@ namespace Kulinarna.BusinessLogic.Services
         {
             var recipes = _dbContext.Recipes.Where(r => r.Name.Contains(name) || String.IsNullOrEmpty(name))
                 .OrderBy(r => r.Name)
-                .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name, AuthorId = r.AuthorId, AvgRating = r.AvgRating, AuthorName = r.AuthorName });
+                .Select(r => new RecipeListItemDTO { RecipeId = r.Id, Name = r.Name, AuthorId = r.AuthorId, AvgRating = r.AvgRating, AuthorName = r.AuthorName, Content = r.Content.Substring(0, 61) });//Substring is in order to give shortened content to index page
 
             return recipes;
         }
