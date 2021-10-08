@@ -30,74 +30,69 @@
     <div class="alert alert-info">@Model.Message</div>
 }
 
-<div>
-    <table class="table table-striped px-md-5">
 
-        @foreach (var recipe in Model.RecipesByName)
-        {
+<div class="row offset-md-1">
+    @foreach (var recipe in Model.RecipesByName)
+    {
 
-            var roundedrating = Convert.ToInt32(Math.Round(recipe.AvgRating, MidpointRounding.AwayFromZero));
+        var roundedrating = Convert.ToInt32(Math.Round(recipe.AvgRating, MidpointRounding.AwayFromZero));
 
 
-            <tr>
-                <td>
-                    <a class="btn-link l" asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a><br />
-                    <span style="font-style: italic;float: left;color: #555;">by @recipe.AuthorName</span> <br />
-                    @if (Model.CurrentUserId != null)
+        <div class="pb-4 col-md-4 col-sm-6">
+            <a class="btn-link l" asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">@recipe.Name</a><br />
+            <span style="font-style: italic;float: left;color: #555;">by @recipe.AuthorName</span> <br />
+            @if (Model.CurrentUserId != null)
+            {
+                <a style="text-decoration: inherit; color:inherit;" asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
+                    @for (int i = 0; i < roundedrating; i++)
                     {
-                        <a style="text-decoration: inherit; color:inherit;" asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
-                            @for (int i = 0; i < roundedrating; i++)
-                            {
-                                <i style="color:rgba(255,215,0)" class="fas fa-star"></i>
-                            }
-                            @for (int i = roundedrating; i < 5; i++)
-                            {
-                                <i style="color:rgba(255,215,0, 0.4);" class="fas fa-star"></i>
-                            }
-                        </a>
+                        <i style="color:rgba(255,215,0)" class="fas fa-star"></i>
                     }
-                    else
+                    @for (int i = roundedrating; i < 5; i++)
                     {
-
-                        @for (int i = 0; i < roundedrating; i++)
-                        {
-                            <i style="color:rgba(255,215,0);" class="fas fa-star"></i>
-                        }
-                        @for (int i = roundedrating; i < 5; i++)
-                        {
-                            <i rgba(255,215,0, 0.4) class="fas fa-star"></i>
-                        }
+                        <i style="color:rgba(255,215,0, 0.4);" class="fas fa-star"></i>
                     }
-                </td>
+                </a>
+            }
+            else
+            {
 
-                @{ var ownRecipe = Model.CurrentUserId == recipe.AuthorId;
-
-                }
-
-                @if (!ownRecipe)
+                @for (int i = 0; i < roundedrating; i++)
                 {
-                    <td></td>
-                    <td></td>
+                    <i style="color:rgba(255,215,0);" class="fas fa-star"></i>
                 }
-                else
+                @for (int i = roundedrating; i < 5; i++)
                 {
-                    <td><a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a></td>
-                    <td><a asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a></td>
+                    <i rgba(255,215,0, 0.4) class="fas fa-star"></i>
                 }
+            }
+
+            @{ var ownRecipe = Model.CurrentUserId == recipe.AuthorId;
+
+            }
+
+            @if (!ownRecipe)
+            {
+
+            }
+            else
+            {
+                <a asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a>
+                <a asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a>
+            }
+        </div>
 
 
 
 
 
 
-            </tr>
-
-        }
-    </table>
+    }
 </div>
 
+
 <div>
-    <ul class="pagination">
+    <ul class="pagination pt-4 pb-4">
         @for (var i = 1; i <= Model.TotalPages; i++)
         {
             <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
@@ -108,8 +103,9 @@
 </div>
 
 
+<div class="p-4 text-center">
+    <a asp-page=".\Edit" class="btn btn-primary">Add new</a>
 
-
-<a asp-page=".\Edit" class="btn btn-primary">Add new</a>
+</div>
 
 
