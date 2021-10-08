@@ -16,3 +16,20 @@
     .star-rating button:hover + .star-rating button + .star-rating button + .star-rating button + .star-rating button {
         color: rgba(255,215,0);
     }
+
+    /* .star-rating button:focus,
+    .star-rating button:focus + .star-rating button,
+    .star-rating button:focus + .star-rating button + .star-rating button,
+    .star-rating button:focus + .star-rating button + .star-rating button + .star-rating button,
+    .star-rating button:focus + .star-rating button + .star-rating button + .star-rating button + .star-rating button {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }*/
+
+
+
+    .star-rating button:focus {
+        outline: 0;
+        /*deletes border around the star,that shows up when is clicked*/
+    }
