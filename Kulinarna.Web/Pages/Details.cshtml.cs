@@ -39,9 +39,9 @@ namespace Kulinarna.Web
             this.ratingService = ratingService;
         }
 
-        public async Task<IActionResult> OnGet(int recipeID)
+        public async Task<IActionResult> OnGet(int recipeId)
         {
-            RecipeDTO = await recipeService.GetRecipeById(recipeID);
+            RecipeDTO = await recipeService.GetRecipeById(recipeId);
             if (RecipeDTO == null)
             {
                 return RedirectToPage("./404");
@@ -53,13 +53,21 @@ namespace Kulinarna.Web
 
         public async Task<IActionResult> OnPost(int recipeId)
         {
-
+            RecipeDTO = await recipeService.GetRecipeById(recipeId);
+            if (RecipeDTO == null)
+            {
+                return RedirectToPage("./404");
+            }
 
 
             CurrentUserId = userManager.GetUserId(HttpContext.User);
             if (CurrentUserId == null)
             {
                 return RedirectToPage("Rate", new { recipeId });//Rate page is made for authorize (because this page needs authorization) and redirect back to details page
+            }
+            if (RecipeDTO.AuthorId == CurrentUserId)
+            {
+                return RedirectToPage("./AccessDenied");
             }
             Rating.Value = int.Parse(Value);
             Rating.AuthorId = CurrentUserId;
