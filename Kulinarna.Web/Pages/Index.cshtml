@@ -41,7 +41,8 @@
         <div class="pb-4 col-md-4 col-sm-6 pr-4 pl-4 col-md-auto mb-md-3">
             @*col-md-auto and mb-md-3 make height of the cards the same*@
 
-            <div class="card">
+            <div class="card" style=" min-height: 100%; color:black;">
+                @*cards have the same height independently of the content which is inside, thanks to min-height:100%*@
                 <div class="card-header">
                     @if (Model.CurrentUserId != null)
                     {
@@ -93,9 +94,9 @@
                     }
                     else
                     {
-                        <a class="card-link" asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-edit"></i></a>
+                        <a class="card-link" asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">Edit  @*<i class="fa fa-edit"></i>*@</a>
 
-                        <a class="card-link" asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">  <i class="fa fa-trash"></i></a>
+                        <a class="card-link" asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">Delete  @*<i class="fa fa-trash"></i>*@</a>
                     }
                 </div>
             </div>
