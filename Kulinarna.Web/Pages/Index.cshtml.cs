@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Kulinarna.Web.Pages
 {
-    [AllowAnonymous]
+[AllowAnonymous]
     public class RecipesModel : PageModel
     {
 

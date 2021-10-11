@@ -38,10 +38,9 @@
         var roundedrating = Convert.ToInt32(Math.Round(recipe.AvgRating, MidpointRounding.AwayFromZero));
 
 
-        <div class="pb-4 col-md-4 col-sm-6 pr-4 pl-4 col-md-auto mb-md-3">
-            @*col-md-auto and mb-md-3 make height of the cards the same*@
+        <div class="pb-4 col-md-4 col-sm-6 pr-4 pl-4">
 
-            <div class="card" style=" min-height: 100%; color:black;">
+            <div class="card rounded" style=" min-height: 100%; color:black;">
                 @*cards have the same height independently of the content which is inside, thanks to min-height:100%*@
                 <div class="card-header">
                     @if (Model.CurrentUserId != null)

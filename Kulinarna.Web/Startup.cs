@@ -3,6 +3,7 @@ using Kulinarna.Data;
 using Kulinarna.Web.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -65,6 +66,8 @@ namespace Kulinarna.Web
             app.UseRouting();
 
             app.UseAuthentication();
+
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

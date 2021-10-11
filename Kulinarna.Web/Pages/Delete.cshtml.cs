@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Kulinarna.BusinessLogic.DTOs;
 using Kulinarna.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Kulinarna.Web.Pages
 {
+    
     public class DeleteModel : PageModel
     {
         private readonly RecipeService recipeService;

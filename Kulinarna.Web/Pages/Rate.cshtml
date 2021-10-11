@@ -1,31 +1,4 @@
-﻿@page "{recipeId:int?}"
+﻿@page
 @model Kulinarna.Web.Pages.RateModel
 @{
-    ViewData["Title"] = "Rate " + Model.Recipe.Name;
 }
-
-<div class="text-center">
-    <h1>Rate @Model.Recipe.Name</h1>
-
-    <br />
-
-
-    <form class="star-rating" method="post">
-
-        <input type="hidden" asp-for="Rating.Id" />
-        <input type="hidden" asp-for="Rating.AuthorId" />
-        <input type="hidden" asp-for="Rating.RecipeId" />
-
-        @* In code below, when there was asp-for instead of name , all i got was null reference exception*@
-        <button type="submit" name="Value" value="1"><i class="fas fa-star"></i></button>
-        <button type="submit" name="Value" value="2"><i class="fas fa-star"></i></button>
-        <button type="submit" name="Value" value="3"><i class="fas fa-star"></i></button>
-        <button type="submit" name="Value" value="4"><i class="fas fa-star"></i></button>
-        <button type="submit" name="Value" value="5"><i class="fas fa-star"></i></button>
-
-    </form>
-</div>
-
-
-
-

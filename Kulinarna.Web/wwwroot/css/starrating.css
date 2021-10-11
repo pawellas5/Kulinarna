@@ -1,23 +1,36 @@
-﻿
-
-.star-rating button {
-    border: 0;
-    background: transparent;
-    font-size: 3em;
-    margin: 0;
-    padding: 0;
-    color: rgba(255,215,0, 0.4);
+﻿.star-rating {
+    flex-direction: column-reverse;
 }
 
-    .star-rating button:hover,
+    .star-rating button {
+        border: 0;
+        background: transparent;
+        font-size: 3em;
+        margin: 0;
+        padding: 0;
+        color: rgba(255,215,0, 0.4);
+    }
+
+
+
+
+
+
+
+#a:hover ~ #b, #a:hover ~ #c, #a:hover ~ #d, #a:hover ~ #e,
+#b:hover ~ #c, #b:hover ~ #d, #b:hover ~ #e,
+#c:hover ~ #d, #c:hover ~ #e,
+#d:hover ~ #e
+/*.star-rating button:hover,
     .star-rating button:hover + .star-rating button,
     .star-rating button:hover + .star-rating button + .star-rating button,
     .star-rating button:hover + .star-rating button + .star-rating button + .star-rating button,
-    .star-rating button:hover + .star-rating button + .star-rating button + .star-rating button + .star-rating button {
-        color: rgba(255,215,0);
-    }
+    .star-rating button:hover + .star-rating button + .star-rating button + .star-rating button + .star-rating button*/ {
+    color: rgba(255,215,0);
+}
+/**/
 
-    /* .star-rating button:focus,
+/* .star-rating button:focus,
     .star-rating button:focus + .star-rating button,
     .star-rating button:focus + .star-rating button + .star-rating button,
     .star-rating button:focus + .star-rating button + .star-rating button + .star-rating button,
@@ -29,7 +42,7 @@
 
 
 
-    .star-rating button:focus {
-        outline: 0;
-        /*deletes border around the star,that shows up when is clicked*/
-    }
+.star-rating button:focus {
+    outline: 0;
+    /*deletes border around the star,that shows up when is clicked*/
+}
