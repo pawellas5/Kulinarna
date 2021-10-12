@@ -29,24 +29,14 @@
 
 
 
-        <button id="a" type="submit" name="Value" value="1"><i class="fas fa-star"></i></button>
-
-        <button id="b" type="submit" name="Value" value="2"><i class="fas fa-star"></i></button>
-        <button id="c" type="submit" name="Value" value="3"><i class="fas fa-star"></i></button>
-        <button id="d" type="submit" name="Value" value="4"><i class="fas fa-star"></i></button>
-        <button id="e" type="submit" name="Value" value="5"><i class="fas fa-star"></i></button>
+        <button id="star1" type="submit" name="Value" value="1"><i class="fas fa-star"></i></button>
+        <button id="star2" type="submit" name="Value" value="2"><i class="fas fa-star"></i></button>
+        <button id="star3" type="submit" name="Value" value="3"><i class="fas fa-star"></i></button>
+        <button id="star4" type="submit" name="Value" value="4"><i class="fas fa-star"></i></button>
+        <button id="star5" type="submit" name="Value" value="5"><i class="fas fa-star"></i></button>
 
     </form>
-    <script>
-        $(function () {
-            $('#a').hover(function () {
-                $('#b').css('background-color', 'yellow');
-            }, function () {
-                // on mouseout, reset the background colour
-                $('#b').css('background-color', '');
-            });
-        });
-    </script>
+   
 </div>
 
 <a asp-page="./Index" class="btn btn-link">

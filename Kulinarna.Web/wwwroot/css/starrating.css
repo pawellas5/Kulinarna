@@ -17,10 +17,12 @@
 
 
 
-#a:hover ~ #b, #a:hover ~ #c, #a:hover ~ #d, #a:hover ~ #e,
+/*#a:hover ~ #b, #a:hover ~ #c, #a:hover ~ #d, #a:hover ~ #e,
 #b:hover ~ #c, #b:hover ~ #d, #b:hover ~ #e,
 #c:hover ~ #d, #c:hover ~ #e,
-#d:hover ~ #e
+#d:hover ~ #e*/
+
+
 /*.star-rating button:hover,
     .star-rating button:hover + .star-rating button,
     .star-rating button:hover + .star-rating button + .star-rating button,
