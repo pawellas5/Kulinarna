@@ -41,6 +41,7 @@ namespace Kulinarna.Web
 
         public async Task<IActionResult> OnGet(int recipeId)
         {
+            CurrentUserId = userManager.GetUserId(HttpContext.User);
             RecipeDTO = await recipeService.GetRecipeById(recipeId);
             if (RecipeDTO == null)
             {

@@ -69,11 +69,19 @@ let changeColor = function () {
         star4.style.color = "rgba(255, 215, 0, 0.4)";
         star5.style.color = "rgba(255, 215, 0, 0.4)";
     })
-
-
-
-
-
 }
 
+
+//Div toggle that is based on user type
+let switchDivs = function (div_id) {
+    let divElem = document.getElementById(div_id);
+    divElem.classList.contains("d-none") ? divElem.classList.remove("d-none") : divElem.classList.add("d-none");
+}
+
+
+
 changeColor();
+switchDivs();
+
+
+
