@@ -72,6 +72,7 @@
 
                 </div>
                 <div class="card-body">
+
                     <a class="btn-link  text-truncate"><h5 class="card-title">@recipe.Name</h5></a>  @*text truncate makes the title fits in one line*@
 
                     <h6 class="card-subtitle mb-2 text-muted font-italic">by @recipe.AuthorName</h6>
@@ -93,9 +94,9 @@
                     }
                     else
                     {
-                        <a class="card-link" asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId">Edit  @*<i class="fa fa-edit"></i>*@</a>
+                        <a class="card-link" asp-page="./Edit" asp-route-recipeId="@recipe.RecipeId"><i class="fa fa-edit"></i></a>
 
-                        <a class="card-link" asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId">Delete  @*<i class="fa fa-trash"></i>*@</a>
+                        <a class="card-link" asp-page="./Delete" asp-route-recipeId="@recipe.RecipeId"><i class="fa fa-trash"></i></a>
                     }
                 </div>
             </div>
