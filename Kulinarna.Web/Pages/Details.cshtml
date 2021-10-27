@@ -25,16 +25,16 @@
     {
         if (Model.CurrentUserId == Model.RecipeDTO.AuthorId)
         {
-            <button style="color: rgba(255,215,0)" class="btn btn-dark" onclick="switchDivs('authorizedAuthor')">Rate</button>
+            <button class="btn btn-primary" onclick="switchDivs('authorizedAuthor')">Rate</button>
         }
         else
         {
-            <button style="color: rgba(255,215,0)" class="btn btn-dark" onclick="switchDivs('authorizedNotAuthor')">Rate</button>
+            <button class="btn btn-primary" onclick="switchDivs('authorizedNotAuthor')">Rate</button>
         }
     }
     else
     {
-        <button style="color: rgba(255,215,0)" class="btn btn-dark" onclick="switchDivs('unauthorized')">Rate</button>
+        <button class="btn btn-primary" onclick="switchDivs('unauthorized')">Rate</button>
     }
 </div>
 

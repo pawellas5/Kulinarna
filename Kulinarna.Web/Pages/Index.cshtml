@@ -44,9 +44,11 @@
 
             <div class="card rounded" style=" min-height: 100%; color:black;">
                 @*cards have the same height independently of the content which is inside, thanks to min-height:100%*@
-                <div class="card-header">
+                <div class="card-header d-inline-block">
                     @if (Model.CurrentUserId != null)
                     {
+
+
                         <a style="text-decoration: inherit; color:inherit;" asp-page="./Rate" asp-route-recipeId="@recipe.RecipeId">
                             @for (int i = 0; i < roundedrating; i++)
                             {
@@ -56,6 +58,15 @@
                             {
                                 <i style="color:rgba(255,215,0, 0.4);" class="fas fa-star"></i>
                             }
+
+
+                            <div class="text-muted">
+                                <label for="avg-rating">Rating: </label>
+                                <span id="id=" avg-rating"">
+                                    @recipe.AvgRating.ToString("0.00")
+                                </span>
+                            </div>
+
                         </a>
                     }
                     else
@@ -69,6 +80,13 @@
                         {
                             <i style="color:rgba(255,215,0, 0.4)" class="fas fa-star"></i>
                         }
+                        <div class="text-muted ">
+                            <label for="avg-rating">Rating: </label>
+                            <span id="id=" avg-rating"">
+                                @recipe.AvgRating.ToString("0.00")
+                            </span>
+                        </div>
+
                     }
 
 
@@ -83,7 +101,7 @@
                         @recipe.Content<span class="text-truncate"> ...</span>
 
                         <div class="d-flex">
-                            <div class="">
+                            <div>
                                 <a class="btn-link " style="display:block;" asp-page="./Details" asp-route-recipeId="@recipe.RecipeId">More</a>
                             </div>
                             @{ var ownRecipe = Model.CurrentUserId == recipe.AuthorId;
