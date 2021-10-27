@@ -33,7 +33,7 @@ namespace Kulinarna.Web
         {
             services.AddDbContext<KulinarnaDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Kulinarna.Data")));
+                    Configuration.GetConnectionString("Data_DefaultConnection_ConnectionString"), x => x.MigrationsAssembly("Kulinarna.Data")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
              .AddEntityFrameworkStores<KulinarnaWebContext>();
