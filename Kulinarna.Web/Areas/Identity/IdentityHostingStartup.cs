@@ -20,7 +20,7 @@ namespace Kulinarna.Web.Areas.Identity
             {
                 services.AddDbContext<KulinarnaWebContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("ConnectionString")));
+                        context.Configuration.GetConnectionString("KulinarnaWebContextConnection")));
 
                 //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 // .AddEntityFrameworkStores<KulinarnaWebContext>();

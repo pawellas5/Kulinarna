@@ -17,7 +17,7 @@
     <div class="input-group">
         <input asp-for="SearchTerm" type="search" class="form-control" placeholder="Search for recipes">
         <div class="input-group-append">
-            <button class="btn btn-secondary" type="submit">
+            <button class="btn btn-secondary" type="submit" asp-route-currentpage="1">
                 <i class="fa fa-search"></i>
             </button>
         </div>
