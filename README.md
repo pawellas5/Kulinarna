@@ -1,1 +1,1 @@
-[https://recipesforge.azurewebsites.net/]("Recipes")
+[recipesforge.azurewebsites.net]("Recipes")
