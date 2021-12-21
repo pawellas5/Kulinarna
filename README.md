@@ -1,1 +1,1 @@
-[recipesforge.azurewebsites.net]("Recipes")
+[App hosted on Azure](https://recipesforge.azurewebsites.net/)
