@@ -19,10 +19,10 @@ namespace Kulinarna.Web.Areas.Identity
             builder.ConfigureServices((context, services) =>
             {
                 services.AddDbContext<KulinarnaWebContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("KulinarnaWebContextConnection")));
+                    options.UseNpgsql(
+                        context.Configuration.GetConnectionString("DefaultConnection")));
 
-                //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false);
                 // .AddEntityFrameworkStores<KulinarnaWebContext>();
                 services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>,
                     ApplicationUserClaimsPrincipalFactory>();

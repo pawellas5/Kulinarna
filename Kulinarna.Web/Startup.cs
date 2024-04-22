@@ -32,10 +32,10 @@ namespace Kulinarna.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<KulinarnaDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("ConnectionString"), x => x.MigrationsAssembly("Kulinarna.Data")));
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("Kulinarna.Data")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
              .AddEntityFrameworkStores<KulinarnaWebContext>();
             services.AddRazorPages().AddMvcOptions(o => o.Filters.Add(new AuthorizeFilter()));//default authorization
             services.AddScoped<RecipeService>();
