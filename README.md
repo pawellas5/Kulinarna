@@ -1,1 +1,1 @@
-[App hosted on Azure](https://recipesforge.azurewebsites.net/)
+[App hosted on Azure](https://recipesforyou.azurewebsites.net/)
